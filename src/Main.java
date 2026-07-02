@@ -1,4 +1,6 @@
-import br.com.project.screenmatch.models.CalculadoraDeTempo;
+import br.com.project.screenmatch.calculation.CalculadoraDeTempo;
+import br.com.project.screenmatch.calculation.FiltroRecomendacao;
+import br.com.project.screenmatch.models.Episodio;
 import br.com.project.screenmatch.models.Filme;
 import br.com.project.screenmatch.models.Serie;
 
@@ -37,5 +39,15 @@ public class Main {
         calculadora.inclui(filme2);
         calculadora.inclui(serie1);
         System.out.println("Total de tempo para maratonar os filmes: " + calculadora.getTempoTotal());
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtra(filme1);
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setSerie("Mr Robot");
+        episodio.setTotalVisualizacao(100);
+        filtro.filtra(episodio);
+
     }
 }

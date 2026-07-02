@@ -1,6 +1,12 @@
 package br.com.project.screenmatch.models;
 
-public class Filme extends Titulo {
+import br.com.project.screenmatch.calculation.Classificavel;
 
+public class Filme extends Titulo implements Classificavel {
+
+    @Override
+    public int getClassificacao() {
+        return (int) mediaAvaliacao() / 2;
+    }
 }
 
