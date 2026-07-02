@@ -1,12 +1,17 @@
 package br.com.project.screenmatch.models;
 
-public class Titulo {
+public class Titulo implements Comparable{
     private String nome;
     private int anoDeLancamento;
     private boolean incluidoPlano;
     private double somaAvaliacoes;
     private int totalAvaliacao;
     private int duracaoMinutos;
+
+    public Titulo(String nome, int anoDeLancamento) {
+        this.nome = nome;
+        this.anoDeLancamento = anoDeLancamento;
+    }
 
     public int getAnoDeLancamento() {
         return anoDeLancamento;
