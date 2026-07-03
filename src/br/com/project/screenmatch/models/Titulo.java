@@ -1,16 +1,27 @@
 package br.com.project.screenmatch.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Titulo implements Comparable<Titulo>{
+    @SerializedName("Title")
     private String nome;
+    @SerializedName("Year")
     private int anoDeLancamento;
     private boolean incluidoPlano;
     private double somaAvaliacoes;
     private int totalAvaliacao;
+    @SerializedName("Runtime")
     private int duracaoMinutos;
 
     public Titulo(String nome, int anoDeLancamento) {
         this.nome = nome;
         this.anoDeLancamento = anoDeLancamento;
+    }
+
+    public Titulo(TituloOmdb pesquisaOmdb) {
+        this.nome = pesquisaOmdb.title();
+        this.anoDeLancamento = Integer.valueOf(pesquisaOmdb.year());
+        this.duracaoMinutos = Integer.valueOf(pesquisaOmdb.runtime().substring(0, 2));
     }
 
     public int getAnoDeLancamento() {
@@ -47,7 +58,7 @@ public class Titulo implements Comparable<Titulo>{
 
     public void exibeFichaTecnica(){
         System.out.println("Nome: " + getNome());
-        System.out.println("Lançamento: " + anoDeLancamento);
+        System.out.println("Lançamento: " + getAnoDeLancamento());
         System.out.println("Duração (min): " + getDuracaoMinutos());
     }
 
@@ -63,5 +74,12 @@ public class Titulo implements Comparable<Titulo>{
     @Override
     public int compareTo(Titulo outroTitulo) {
         return this.getNome().compareTo(outroTitulo.getNome());
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() +
+                "\nAno de Lançamento: " + getAnoDeLancamento() +
+                "\nDuração: " + getDuracaoMinutos();
     }
 }

@@ -25,8 +25,6 @@ public class MainList {
         lista.add(serie1);
         for (Titulo item : lista){
             System.out.println(item.getNome());
-//            Filme filme = (Filme) item;
-//            System.out.println("Classificação: " + filme.getClassificacao());
         }
 
         ArrayList<String> buscarPorArtista = new ArrayList<>();

@@ -1,5 +1,10 @@
 package br.com.project.screenmatch.main;
 
+import br.com.project.screenmatch.models.Titulo;
+import br.com.project.screenmatch.models.TituloOmdb;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
@@ -24,7 +29,18 @@ public class MainSearch {
                 .build();
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-        System.out.println(response.statusCode());
+
+        String json = response.body();
+        System.out.println(json);
+
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .create();
+        TituloOmdb pesquisaOmdb = gson.fromJson(json, TituloOmdb.class);
+        System.out.println(pesquisaOmdb);
+
+        Titulo pesquisa = new Titulo(pesquisaOmdb);
+        System.out.println(pesquisa);
+
     }
 }
